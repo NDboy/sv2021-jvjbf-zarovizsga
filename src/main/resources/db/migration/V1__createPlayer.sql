@@ -6,7 +6,4 @@ create table players
     position_type varchar(255) not null,
     team_id       bigint,
     primary key (id)
-);
-
-alter table players
-    add constraint FK_TeamPlayer foreign key (team_id) references teams (id);
+)

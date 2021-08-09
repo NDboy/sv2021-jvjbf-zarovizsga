@@ -1,6 +1,7 @@
 package org.training360.finalexam.teams;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class TeamService {
 
 
     public List<TeamDTO> listAllTeams() {
-        List<Team> teams = teamRepository.findAllWithPlayers();
+        List<Team> teams = teamRepository.findAll();
 
         Type targetListType = new TypeToken<List<TeamDTO>>() {}.getType();
         return modelMapper.map(teams, targetListType);
@@ -43,7 +44,7 @@ public class TeamService {
         Player player = new Player(command.getName(), command.getBirthDate(), command.getPosition());
         playerRepository.save(player);
         team.addPlayer(player);
-//        teamRepository.save(team);
+
         return modelMapper.map(team, TeamDTO.class);
     }
 
@@ -51,7 +52,8 @@ public class TeamService {
     public TeamDTO addExistingPlayer(long id, UpdateWithExistingPlayerCommand command) {
         Team team = teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException(id));
         Player player = playerRepository.findById(command.getId()).orElseThrow(() -> new PlayerNotFoundException(command.getId()));
-        if (player.getTeam() == null && teamRepository.countPlayersOnPosition(player.getPosition()) < 2) {
+        long count = team.getPlayers().stream().filter(p -> p.getPosition() == player.getPosition()).count();
+        if (player.getTeam() == null && count < 2) {
             team.addPlayer(player);
         }
         return modelMapper.map(team, TeamDTO.class);

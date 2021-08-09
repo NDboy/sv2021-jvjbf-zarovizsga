@@ -18,7 +18,7 @@ public class PlayerDTO {
 
     private PositionType position;
 
-    private Team team;
+//    private Team team;
 
     public Long getId() {
         return id;
@@ -52,11 +52,11 @@ public class PlayerDTO {
         this.position = position;
     }
 
-    public Team getTeam() {
-        return team;
-    }
+//    public Team getTeam() {
+//        return team;
+//    }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
 }

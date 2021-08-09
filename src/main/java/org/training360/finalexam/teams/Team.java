@@ -52,6 +52,7 @@ public class Team {
     }
 
     public void addPlayer(Player player) {
+        player.setTeam(this);
         if(players == null) {
             players = new ArrayList<>();
         }

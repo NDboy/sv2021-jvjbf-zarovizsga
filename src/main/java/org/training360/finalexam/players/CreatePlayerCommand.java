@@ -1,5 +1,6 @@
 package org.training360.finalexam.players;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 public class CreatePlayerCommand {
 
     @NotBlank
+    @Schema(example = "Joe Black")
     private String name;
 
     private LocalDate birthDate;

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "players")
 public class Player {
 
     @Id
@@ -20,10 +21,18 @@ public class Player {
 
     private LocalDate birthDate;
 
+    @Enumerated(value = EnumType.STRING)
     private PositionType position;
 
     @ManyToOne
     private Team team;
+
+    public Player(String name, LocalDate birthDate, PositionType position, Team team) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.team = team;
+    }
 
     public Player(String name, LocalDate birthDate, PositionType position) {
         this.name = name;
