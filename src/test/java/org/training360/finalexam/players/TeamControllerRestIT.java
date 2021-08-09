@@ -77,7 +77,7 @@ public class TeamControllerRestIT {
                 TeamDTO.class,
                 team.getId());
 
-        assertThat(resultWithPlayer.getPlayers()).extracting(Player::getName)
+        assertThat(resultWithPlayer.getPlayers()).extracting(PlayerDTO::getName)
                 .containsExactly("John Doe");
 
     }
@@ -105,7 +105,7 @@ public class TeamControllerRestIT {
                 }
         ).getBody();
 
-        assertThat(result.get(0).getPlayers()).extracting(Player::getName)
+        assertThat(result.get(0).getPlayers()).extracting(PlayerDTO::getName)
                 .containsExactly("John Doe");
     }
 
@@ -142,7 +142,7 @@ public class TeamControllerRestIT {
         TeamDTO resultTeam1 = result.stream().filter(t->t.getName().equals("Arsenal")).findFirst().orElseThrow();
         TeamDTO resultTeam2 = result.stream().filter(t->t.getName().equals("Chelsea")).findFirst().orElseThrow();
 
-        assertThat(resultTeam1.getPlayers()).extracting(Player::getName)
+        assertThat(resultTeam1.getPlayers()).extracting(PlayerDTO::getName)
                 .containsExactly("John Doe");
 
         assertThat(resultTeam2.getPlayers()).isEmpty();
@@ -184,7 +184,7 @@ public class TeamControllerRestIT {
         ).getBody();
 
         assertThat(result.get(0).getPlayers())
-                .extracting(Player::getName)
+                .extracting(PlayerDTO::getName)
                 .containsOnly("John Doe","Jack Doe");
 
     }

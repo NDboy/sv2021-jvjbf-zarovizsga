@@ -7,7 +7,7 @@ import java.net.URI;
 
 public class TeamNotFoundException extends AbstractThrowableProblem {
 
-    private static final URI TYPE = URI.create("teams/team-not-found");
+    private static final URI TYPE = URI.create("teams/not-found");
 
     public TeamNotFoundException(long id) {
         super(  TYPE,
